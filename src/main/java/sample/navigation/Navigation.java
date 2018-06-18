@@ -1,6 +1,9 @@
 package sample.navigation;
+import sample.Config;
+
 import static java.lang.Math.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Navigation {
     // Variables
@@ -9,7 +12,6 @@ public class Navigation {
     private int[][] points;
 
     // Functions
-
     public Navigation(boolean[][]wallMap, int[][]points) {
         this.points = points;
         this.wallMap = wallMap;
@@ -80,7 +82,6 @@ public class Navigation {
 
         routePoints[0][0] = actualX;
         routePoints[0][1] = actualY;
-
         for(int i=0; i<this.map[ startY ][ startX ]; i++){
             distLeft--;
             if(actualY+1 < this.map.length && this.map[actualY+1][actualX] == distLeft){
@@ -153,8 +154,7 @@ public class Navigation {
         resetMap();
         setSquaresDistance(this.points[nrOfPoints-1][0], this.points[nrOfPoints-1][1]);
         int[][]tmp = getRouteAB(this.points[point][0], this.points[point][1]);
-        for(int k=0; k < tmp.length; k++)
-            allRoute.add(tmp[k]);
+        Collections.addAll(allRoute, tmp);
         return allRoute;
     }
 

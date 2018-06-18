@@ -1,7 +1,7 @@
 package sample;
 
 public class Config {
-    static boolean[][]shopMap = {
+    static public boolean[][]shopMap = {
             {false, false, false, false,  true,  true,  true,  true,  true, false},
             {false,  true,  true,  true,  true, false, false, false,  true, false},
             {false,  true, false, false,  true, false, false, false,  true, false},
@@ -14,5 +14,5 @@ public class Config {
             {false,  true, false, false,  true,  true,  true,  true,  true, false},
             { true,  true,  true,  true,  true, false, false, false,  true, false},
     };//false-sciana/pulka
-    static String dataBaseFile = "./database.xls";
+    static public String dataBaseFile = "./database.xls";
 }
