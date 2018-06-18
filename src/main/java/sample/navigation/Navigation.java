@@ -1,4 +1,4 @@
-package com.android.nav_shop.navigation;
+package sample.navigation;
 import static java.lang.Math.*;
 import java.util.ArrayList;
 
