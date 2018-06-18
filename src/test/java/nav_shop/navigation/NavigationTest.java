@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 import sample.navigation.Navigation;
 
 
-public class NavigationTests {
+public class NavigationTest {
 
     private boolean map[][];
     @Before

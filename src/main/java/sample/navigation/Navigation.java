@@ -133,7 +133,7 @@ public class Navigation {
                     break;
                 }
                 // przeszukiwanie reszty punktów który może być bliżej
-            for(j=j; j<nrOfPoints; j++)
+            for(j=j+1; j<nrOfPoints; j++)
                 if(!used[j])
                     if(map[this.points[j][1]][this.points[j][0]] < nextPointDistance){
                         nextPoint = j;
