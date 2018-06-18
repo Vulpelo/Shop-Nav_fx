@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -69,37 +70,40 @@ public class NavigationTests {
         };
         ArrayList<int[]> realRoute = new ArrayList<int[]>();
 
-        int tmp[] = {0,3}; realRoute.add(tmp);
-        tmp[0]=1; realRoute.add(tmp);
-        tmp[0]=2; realRoute.add(tmp);
-        tmp[1]=4; realRoute.add(tmp);
-        tmp[0]=3; realRoute.add(tmp);
-        tmp[0]=4; realRoute.add(tmp);
-        tmp[1]=3; realRoute.add(tmp);
-        tmp[0]=5; realRoute.add(tmp);
-        tmp[1]=2; realRoute.add(tmp);
-        tmp[1]=1; realRoute.add(tmp);
-        tmp[0]=6; realRoute.add(tmp);
-        tmp[0]=7; realRoute.add(tmp);
-        tmp[0]=8; realRoute.add(tmp);
-        tmp[1]=2; realRoute.add(tmp);
-        tmp[1]=3; realRoute.add(tmp);
-        tmp[0]=9; realRoute.add(tmp);
-        tmp[1]=4; realRoute.add(tmp);
-        tmp[1]=5; realRoute.add(tmp);
-        tmp[1]=6; realRoute.add(tmp);
-        tmp[0]=8; realRoute.add(tmp);
-        tmp[0]=7; realRoute.add(tmp);
-        tmp[1]=5; realRoute.add(tmp);
-
+        int tmp[] = {0,3}; realRoute.add(tmp.clone());
+        tmp[0]=1; realRoute.add(tmp.clone());
+        tmp[0]=2; realRoute.add(tmp.clone());
+        tmp[1]=4; realRoute.add(tmp.clone());
+        tmp[0]=3; realRoute.add(tmp.clone());
+        tmp[0]=4; realRoute.add(tmp.clone());
+        tmp[1]=3; realRoute.add(tmp.clone());
+        tmp[0]=5; realRoute.add(tmp.clone());
+        tmp[1]=2; realRoute.add(tmp.clone());
+        tmp[1]=1; realRoute.add(tmp.clone());
+        tmp[0]=6; realRoute.add(tmp.clone());
+        tmp[0]=7; realRoute.add(tmp.clone());
+        tmp[0]=8; realRoute.add(tmp.clone());
+        tmp[1]=2; realRoute.add(tmp.clone());
+        tmp[1]=3; realRoute.add(tmp.clone());
+        tmp[0]=9; realRoute.add(tmp.clone());
+        tmp[1]=4; realRoute.add(tmp.clone());
+        tmp[1]=5; realRoute.add(tmp.clone());
+        tmp[1]=6; realRoute.add(tmp.clone());
+        tmp[0]=8; realRoute.add(tmp.clone());
+        tmp[0]=7; realRoute.add(tmp.clone());
+        tmp[1]=5; realRoute.add(tmp.clone());//21
 
         Navigation nav = new Navigation(map, points);
         ArrayList<int[]> calRoute = nav.getRoute();
         System.out.println("ty");
 
+        if(calRoute.size() != realRoute.size())
+            Assert.assertTrue(false);
+
         for(int i=0;i<calRoute.size(); i++){
-            System.out.println("ty");
-            if(realRoute.get(i)[0] != calRoute.get(i)[0] || realRoute.get(i)[1] != calRoute.get(i)[1])
+            System.out.println("R("+ realRoute.get(calRoute.size()-1-i)[0] +","+realRoute.get(calRoute.size()-1-i)[1]+"); CR("
+                                +calRoute.get(i)[0] +","+calRoute.get(i)[1]+")");
+            if(realRoute.get(calRoute.size()-1-i)[0] != calRoute.get(i)[0] || realRoute.get(calRoute.size()-1-i)[1] != calRoute.get(i)[1])
                 Assert.assertTrue(false);
         }
         Assert.assertTrue(true);

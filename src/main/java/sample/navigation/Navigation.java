@@ -71,7 +71,7 @@ public class Navigation {
         }while(anyPointSetted);
     }
 
-    public int[][] getRouteAB(int startX, int startY){
+    private int[][] getRouteAB(int startX, int startY){
         // array has length of distance beetween A and B point
         int actualX = startX;
         int actualY = startY;
@@ -83,16 +83,16 @@ public class Navigation {
 
         for(int i=0; i<this.map[ this.points[0][1] ][ this.points[0][0] ]; i++){
             distLeft--;
-            if(this.map[actualY+1][actualX] == distLeft){
+            if(actualY+1 < this.map.length && this.map[actualY+1][actualX] == distLeft){
                 actualY++;
             }
-            else if(this.map[actualY-1][actualX] == distLeft){
+            else if(actualY-1 >= 0 && this.map[actualY-1][actualX] == distLeft){
                 actualY--;
             }
-            else if(this.map[actualY][actualX+1] == distLeft){
+            else if(actualX+1 < this.map[actualY].length && this.map[actualY][actualX+1] == distLeft){
                 actualX++;
             }
-            else if(this.map[actualY][actualX-1] == distLeft){
+            else if(actualX-1 >= 0 && this.map[actualY][actualX-1] == distLeft){
                 actualX--;
             }
             routePoints[i+1][0] = actualX;
@@ -105,16 +105,17 @@ public class Navigation {
     // Pierwszy punkt to punkt startowy, a ostatni punkt na liście jest końcowy/ostatni.
     public ArrayList<int[]> getRoute() {
         int len = this.map.length;
+        int nrOfPoints = this.points.length;
         ArrayList<int[]> allRoute = new ArrayList<int[]>();
-        boolean used[] = new boolean[len];
+        boolean used[] = new boolean[nrOfPoints];
         int point=0;
         used[0] = true;
-        used[len-1] = true;
-        for(int i=1; i<len-1; i++)
+        used[nrOfPoints-1] = true;
+        for(int i=1; i<nrOfPoints-1; i++)
             used[i]=false;
 
         // Main loop, for each element
-        for(int i=0; i<len-1; i++){
+        for(int i=1; i<nrOfPoints-1; i++){
             resetMap();
             // tworze mapę odległości do każdego miejsca na mapie z punktu startowego
             setSquaresDistance(this.points[point][0], this.points[point][1]);
@@ -124,14 +125,15 @@ public class Navigation {
             int nextPoint=0; //Następny, najbliższy punkt do którego można dojść
             int nextPointDistance= 1000000;
 
-            //Pierwszy punkt który może być następny. PUNKT KTÓRY JEST NAJBLIŻEJ
-            for(j=1; j<len; j++)
+            // Pierwszy wolny, nieużyty punkt
+            for(j=1; j<nrOfPoints; j++)
                 if(!used[j]) {
                     nextPoint = j;
                     nextPointDistance = map[this.points[j][1]][this.points[j][0]];
                     break;
                 }
-            for(j=j; j<len; j++)
+                // przeszukiwanie reszty punktów który może być bliżej
+            for(j=j; j<nrOfPoints; j++)
                 if(!used[j])
                     if(map[this.points[j][1]][this.points[j][0]] < nextPointDistance){
                         nextPoint = j;
@@ -141,7 +143,7 @@ public class Navigation {
             setSquaresDistance(this.points[nextPoint][0], this.points[nextPoint][1]);
             // Pobieranie trasy z point to nextPoint
             int[][]tmp = getRouteAB(this.points[point][0], this.points[point][1]);
-            for(int k=0; k<tmp.length-1; k++)
+            for(int k=tmp.length-2; k>=0; k--)
                 allRoute.add(tmp[k]);
 
             // przygotowanie do następnej pętli
@@ -149,9 +151,9 @@ public class Navigation {
             point=nextPoint;
         }
         resetMap();
-        setSquaresDistance(this.points[len-1][0], this.points[len-1][1]);
+        setSquaresDistance(this.points[nrOfPoints-1][0], this.points[nrOfPoints-1][1]);
         int[][]tmp = getRouteAB(this.points[point][0], this.points[point][1]);
-        for(int k=0; k<tmp.length; k++)
+        for(int k=tmp.length-1; k>=0; k--)
             allRoute.add(tmp[k]);
         return allRoute;
     }
