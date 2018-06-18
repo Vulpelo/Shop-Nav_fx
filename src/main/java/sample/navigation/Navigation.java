@@ -81,7 +81,7 @@ public class Navigation {
         routePoints[0][0] = actualX;
         routePoints[0][1] = actualY;
 
-        for(int i=0; i<this.map[ this.points[0][1] ][ this.points[0][0] ]; i++){
+        for(int i=0; i<this.map[ startY ][ startX ]; i++){
             distLeft--;
             if(actualY+1 < this.map.length && this.map[actualY+1][actualX] == distLeft){
                 actualY++;
@@ -143,7 +143,7 @@ public class Navigation {
             setSquaresDistance(this.points[nextPoint][0], this.points[nextPoint][1]);
             // Pobieranie trasy z point to nextPoint
             int[][]tmp = getRouteAB(this.points[point][0], this.points[point][1]);
-            for(int k=tmp.length-2; k>=0; k--)
+            for(int k=0; k<tmp.length-1; k++)
                 allRoute.add(tmp[k]);
 
             // przygotowanie do następnej pętli
@@ -153,7 +153,7 @@ public class Navigation {
         resetMap();
         setSquaresDistance(this.points[nrOfPoints-1][0], this.points[nrOfPoints-1][1]);
         int[][]tmp = getRouteAB(this.points[point][0], this.points[point][1]);
-        for(int k=tmp.length-1; k>=0; k--)
+        for(int k=0; k < tmp.length; k++)
             allRoute.add(tmp[k]);
         return allRoute;
     }
