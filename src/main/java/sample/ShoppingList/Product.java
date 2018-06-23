@@ -1,4 +1,4 @@
-package sample;
+package sample.ShoppingList;
 
 public class Product {
 
@@ -16,7 +16,8 @@ public class Product {
         return nazwa;
     }
 
-    public void setNazwa(String nazwa) {
+    public String setNazwa(String nazwa) {
         this.nazwa = nazwa;
+        return nazwa;
     }
 }
