@@ -1,5 +1,7 @@
-package com.android.nav_shop;
+package nav_shop;
 
+import sample.ShoppingList.Product;
+import sample.ShoppingList.ShoppingList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -14,4 +16,22 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
+
+    @Test
+    public void testFacttory_product()
+    {
+        Product testPepsi = new Product();
+        testPepsi.nazwa = "Pepsi";
+
+        ShoppingList test = new ShoppingList();
+        if(test.ProductDrink().nazwa == testPepsi.nazwa)
+        {
+            Assert.assertTrue(true);
+        }
+        else
+        {
+            Assert.assertTrue(false);
+        }
+    }
 }
+

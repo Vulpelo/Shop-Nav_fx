@@ -1,8 +1,16 @@
 package sample.ShoppingList;
+import sample.ShoppingList.Clonable;
 
-public class Product {
 
-    private String nazwa;
+public class Product implements Clonable {
+    @Override
+    public Clonable Clone()
+    {
+        Product cloneProduct = new Product(nazwa);
+        return cloneProduct;
+    }
+
+    public String nazwa;
 
     public Product() {
         this.nazwa = "";
@@ -20,4 +28,6 @@ public class Product {
         this.nazwa = nazwa;
         return nazwa;
     }
+
+
 }
