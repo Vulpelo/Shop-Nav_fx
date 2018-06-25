@@ -25,12 +25,11 @@ public class ShoppingList extends Application {
 
     String a = null;
     String nowa_wart;
-
     @SuppressWarnings("unchecked")
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Workbook fileHolder = Workbook.getWorkbook(new File("przyklad.xls"));
+        Workbook fileHolder = Workbook.getWorkbook(new File("database.xls"));
         Sheet sheet = fileHolder.getSheet(0);
 
         String[][] array = new String[2][140];
