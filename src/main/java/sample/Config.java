@@ -14,5 +14,5 @@ public class Config {
             {false,  true, false, false,  true,  true,  true,  true,  true, false},
             { true,  true,  true,  true,  true, false, false, false,  true, false},
     };//false-sciana/pulka
-    static public String dataBaseFile = "./database.xls";
+    static public String dataBaseFile = "resources/database.xls";
 }
