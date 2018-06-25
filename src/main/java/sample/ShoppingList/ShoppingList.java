@@ -110,4 +110,10 @@ public class ShoppingList extends Application {
         SelectedProduct.forEach(allProducts::remove);
     }
 
+    //wzorzec Fabryka
+    public Product ProductDrink()
+    {
+        Product factory = new Product("Pepsi");
+        return factory;
+    }
 }

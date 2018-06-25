@@ -10,7 +10,7 @@ public class Product implements Clonable {
         return cloneProduct;
     }
 
-    private String nazwa;
+    public String nazwa;
 
     public Product() {
         this.nazwa = "";
